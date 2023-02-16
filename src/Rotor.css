@@ -1,0 +1,10 @@
+.rotor-container{
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.rotors{
+    min-width: 10rem;
+}

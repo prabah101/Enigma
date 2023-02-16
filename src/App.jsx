@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import Rotor from './Rotor';
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -30,6 +31,7 @@ function encodeMessage(message) {
 function App() {
   const [message, setMessage] = useState("");
   const [encodedMessage, setEncodedMessage] = useState("");
+  const [rotor1Pos, setRotor1Pos] = useState("");
   
   function handleInputChange(event) {
     setMessage(event.target.value);
@@ -41,9 +43,11 @@ function App() {
   
   return (
     <div>
+      {/* <p>{rotor1[rotor1Pos]}</p>
       <input type="text" value={message} onChange={handleInputChange} />
       <button onClick={handleEncodeButtonClick}>Encode</button>
-      <p>{encodedMessage}</p>
+      <p>{encodedMessage}</p> */}
+      <Rotor />
     </div>
   );
 }
