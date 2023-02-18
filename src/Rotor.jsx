@@ -5,14 +5,14 @@ import './Rotor.css'
 export default function Rotor() {
 
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const rotor1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const rotor2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const rotor3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const reflector = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    // const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-    // const rotor2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-    // const rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
-    // const reflector = "EJMZALYXVBWFCRQUONTSPIKHGD";
+    // // const rotor1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // const rotor2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // const rotor3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // const reflector = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    const rotor2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    const rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
 
     const [rotor1Index, setRotor1Index] = useState(0)
     const [rotor2Index, setRotor2Index] = useState(0)
@@ -76,25 +76,43 @@ export default function Rotor() {
     }
 
     function encrypt(letter){
-        incrementRotor1();
         if(letter == " "){
             setEncryptText(prevState => prevState + letter)
         }else{
-            const stage1 = rotor1[alphabet.indexOf(letter) + rotor1Index]
-            const stage2 = rotor2[alphabet.indexOf(stage1) + rotor2Index]
-            const stage3 = rotor3[alphabet.indexOf(stage2) + rotor3Index]
+            incrementRotor1();
+            const stage1 = rotor1[(alphabet.indexOf(letter) + rotor1Index)%26]
+            const stage2 = rotor2[(alphabet.indexOf(stage1) + rotor2Index)%26]
+            const stage3 = rotor3[(alphabet.indexOf(stage2) + rotor3Index)%26]
             const stage4 = reflector[alphabet.indexOf(stage3)]
-            const stage5 = rotor3[alphabet.indexOf(stage4) + rotor3Index]
-            const stage6 = rotor2[alphabet.indexOf(stage5) + rotor2Index]
-            const stage7 = rotor1[alphabet.indexOf(stage6) + rotor1Index]
-            setEncryptText(prevState => prevState + stage7)
-            console.log(" stage 1 :" + stage1)
-            console.log(" stage 2 :" + stage2)
-            console.log(" stage 3 :" + stage3)
-            console.log(" stage 4 :" + stage4)
-            console.log(" stage 5 :" + stage5)
-            console.log(" stage 6 :" + stage6)
-            console.log(" stage 7 :" + stage7)
+            const stage5 = rotor3[(alphabet.indexOf(stage4) - rotor1Index + 26)%26]
+            const stage6 = rotor2[(alphabet.indexOf(stage5) - rotor2Index)%26]
+            const stage7 = rotor1[(alphabet.indexOf(stage6) - rotor3Index)%26]
+            setEncryptText(prevState => prevState + stage1)
+            // --------------------------
+            // const stage1 = rotor1[(alphabet.indexOf(letter) + rotor1Index)%26]
+            // // const stage2 = rotor2[alphabet.indexOf(stage1) + rotor2Index]
+            // // const stage3 = rotor3[alphabet.indexOf(stage2) + rotor3Index]
+            // const stage4 = reflector[alphabet.indexOf(stage1)]
+            // // const stage5 = rotor3[alphabet.indexOf(stage4)]
+            // // const stage6 = rotor2[alphabet.indexOf(stage5)]
+            // const stage7 = rotor1[(alphabet.indexOf(stage4) - rotor1Index + 26)%26]
+            // setEncryptText(prevState => prevState + stage1)
+            // // const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+            // // const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+            // console.log(" stage 1 :" + stage1)
+            // // console.log(" stage 2 :" + stage2)
+            // // console.log(" stage 3 :" + stage3)
+            // console.log(" stage 4 :" + stage4)
+            // // console.log(" stage 5 :" + stage5)
+            // // console.log(" stage 6 :" + stage6)
+            // console.log(" stage 7 :" + stage7)
+            // const letterIndex = alphabet.indexOf(letter);
+            // const encodedLetterIndex = alphabet.indexOf(rotor1[(letterIndex + rotor1Index) % 26]);
+            // const reflectedIndex = alphabet.indexOf(reflector[encodedLetterIndex]);
+            // const decodedLetterIndex = alphabet.indexOf(rotor1[(reflectedIndex - rotor1Index + 26) % 26]);
+            // const encodedLetter = alphabet[decodedLetterIndex];
+            // setEncryptText(prevState => prevState + encodedLetter)
+            // incrementRotor1();
             
         }
     }
@@ -108,7 +126,7 @@ export default function Rotor() {
         const cleanedValue  = value.toUpperCase().replace(/[^A-Z\s]/g, "")
         setText(cleanedValue)
         const letterToPass = cleanedValue[cleanedValue.length -1]
-        if((letterToPass > "A" && letterToPass < "Z") || letterToPass == " "){
+        if((letterToPass >= "A" && letterToPass <= "Z") || letterToPass == " "){
             encrypt(cleanedValue[cleanedValue.length -1])
         }
         
