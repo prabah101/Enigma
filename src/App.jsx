@@ -43,10 +43,10 @@ function App() {
   
   return (
     <div>
-      {/* <p>{rotor1[rotor1Pos]}</p>
+      <p>{rotor1[rotor1Pos]}</p>
       <input type="text" value={message} onChange={handleInputChange} />
       <button onClick={handleEncodeButtonClick}>Encode</button>
-      <p>{encodedMessage}</p> */}
+      <p>{encodedMessage}</p>
       <Rotor />
     </div>
   );

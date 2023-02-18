@@ -8,3 +8,18 @@
 .rotors{
     min-width: 10rem;
 }
+
+textarea{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin: .37rem;
+    font-family: 'Roboto Mono', monospace;
+    border: 3px;
+    width: 90%;
+    margin: 0 auto;
+    outline: none;
+    height: 200px;
+    background: #2B2D34;
+    color: #CDCDCE;
+    padding: 10px;
+}
