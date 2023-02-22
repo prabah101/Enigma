@@ -9,9 +9,13 @@ export default function Rotor() {
     // const rotor2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // const rotor3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // const reflector = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-    const rotor2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-    const rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    // const rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+    // const rotor2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+    // const rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+    // const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+    const rotor1 = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+    const rotor2 = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+    const rotor3 = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
     const reflector = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
 
     const [rotor1Index, setRotor1Index] = useState(0)
@@ -84,10 +88,10 @@ export default function Rotor() {
             const stage2 = rotor2[(alphabet.indexOf(stage1) + rotor2Index)%26]
             const stage3 = rotor3[(alphabet.indexOf(stage2) + rotor3Index)%26]
             const stage4 = reflector[alphabet.indexOf(stage3)]
-            const stage5 = rotor3[(alphabet.indexOf(stage4) - rotor1Index + 26)%26]
-            const stage6 = rotor2[(alphabet.indexOf(stage5) - rotor2Index)%26]
-            const stage7 = rotor1[(alphabet.indexOf(stage6) - rotor3Index)%26]
-            setEncryptText(prevState => prevState + stage1)
+            const stage5 = rotor3[(alphabet.indexOf(stage4) + rotor3Index)%26]
+            const stage6 = rotor2[(alphabet.indexOf(stage5) + rotor2Index)%26]
+            const stage7 = rotor1[(alphabet.indexOf(stage6) + rotor1Index)%26]
+            setEncryptText(prevState => prevState + stage7)
             // --------------------------
             // const stage1 = rotor1[(alphabet.indexOf(letter) + rotor1Index)%26]
             // // const stage2 = rotor2[alphabet.indexOf(stage1) + rotor2Index]
