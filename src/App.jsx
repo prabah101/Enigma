@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import Rotor from './Rotor';
+import RotorNew from './RotorNew';
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -47,7 +48,8 @@ function App() {
       <input type="text" value={message} onChange={handleInputChange} />
       <button onClick={handleEncodeButtonClick}>Encode</button>
       <p>{encodedMessage}</p>
-      <Rotor />
+      {/* <Rotor /> */}
+      <RotorNew />
     </div>
   );
 }
