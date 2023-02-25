@@ -120,15 +120,15 @@ export default function RotorNew() {
         if(letter == " "){
             setEncryptText(prevState => prevState + letter)
         }else{
-            incrementRotor1();
+            // incrementRotor1();
             const encryptedIndex = alphabet.indexOf(letter)
-            const stage1 = rotor1[(encryptedIndex + rotor1Index)%26][1]
-            const stage2 = rotor2[stage1][1]
+            const stage1 = rotor1[(encryptedIndex)][1]
+            const stage2 = rotor2[(stage1 + rotor1Index)%26][1]
             const stage3 = rotor3[stage2][1]
             const stage4 = reflector[stage3]
             const stage5 = reverseElement(rotor3, stage4)
             const stage6 = reverseElement(rotor2, stage5)
-            const stage7 = reverseElement(rotor1, (stage6 + rotor1Index)%26)
+            const stage7 = reverseElement(rotor1, (stage6))
             const encryptedLetter = alphabet[stage7]
             setEncryptText(prevState => prevState + encryptedLetter)
             console.log(" stage 1 :" + stage1)
